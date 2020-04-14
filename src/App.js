@@ -24,7 +24,10 @@ class App extends React.Component {
       headers: {
         "content-type": "application/json",
       },
-    }).catch();
+    })
+      .then((res) => res.json())
+      .then((newScript) => this.setState({ newScriptId: newScript.id }))
+      .catch();
   };
 
   updateScriptName = (value) => {

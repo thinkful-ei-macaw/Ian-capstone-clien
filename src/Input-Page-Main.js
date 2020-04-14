@@ -41,7 +41,7 @@ export default class InputPageMain extends React.Component {
     }
   };
 
-  generatScriptInputs = (script, index) => {
+  generateScriptInputs = (script, index) => {
     let activeScripts = this.state.activeScripts;
     if (script.type === "command") {
       return (
@@ -112,24 +112,25 @@ export default class InputPageMain extends React.Component {
   };
 
   handlePostScript = () => {
-    let activeScripts = this.state.action.map((script) => {
-      return { ...script }, { script_relation: this.props.scriptId };
+    let activeScripts = this.state.activeScripts.map((script) => {
+      return { ...script, script_relation: this.props.scriptId };
     });
+    console.log(this.state.activeScripts);
     fetch(`http://localhost:8000/input`, {
       method: "POST",
-      body: activeScripts.json(),
+      body: JSON.stringify({ activeScripts }),
       headers: {
         "content-type": "application/json",
       },
-    }).then((res) => console.log(res.json));
+    }).then((res) => console.log(res.json()));
   };
 
   render() {
     return (
-      <form action="">
+      <div>
         <ul id="input_list">
           {this.state.activeScripts.map((script, index) =>
-            this.generatScriptInputs(script, index)
+            this.generateScriptInputs(script, index)
           )}
         </ul>
         <form
@@ -156,7 +157,8 @@ export default class InputPageMain extends React.Component {
           </select>
           <button type="submit">new line</button>
         </form>
-      </form>
+        <button onClick={this.handlePostScript}></button>
+      </div>
     );
   }
 }

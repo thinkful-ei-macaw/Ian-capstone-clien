@@ -17,6 +17,21 @@ class App extends React.Component {
     newScriptId: 1,
   };
 
+  handleAddScript = () => {
+    fetch(`${URL}`, {
+      method: "POST",
+      body: JSON.stringify({ title: this.state.newScriptName }),
+      headers: {
+        "content-type": "application/json",
+      },
+    }).catch();
+  };
+
+  updateScriptName = (value) => {
+    this.setState({ newScriptName: value });
+    console.log(this.state.newScriptName);
+  };
+
   handleDisplayScript = () => {
     fetch(`${URL}hello`)
       .then((res) => {
@@ -38,7 +53,12 @@ class App extends React.Component {
           exact
           path="/"
           render={() => {
-            return <LandingPage />;
+            return (
+              <LandingPage
+                updateScriptName={this.updateScriptName}
+                handleAddScript={this.handleAddScript}
+              />
+            );
           }}
         />
         <Route

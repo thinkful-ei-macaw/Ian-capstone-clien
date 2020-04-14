@@ -8,16 +8,6 @@ export default class LandingPage extends React.Component {
     newScriptName: "",
   };
 
-  handleAddScript = () => {
-    fetch(`${URL}`, {
-      method: "POST",
-      body: JSON.stringify({ title: this.state.newScriptName }),
-      headers: {
-        "content-type": "application/json",
-      },
-    }).catch();
-  };
-
   render() {
     return (
       <div>
@@ -51,12 +41,11 @@ export default class LandingPage extends React.Component {
             type="text"
             placeholder="title here"
             onChange={(e) => {
-              this.setState({ newScriptName: e.target.value });
-              console.log(this.state);
+              this.props.updateScriptName(e.target.value);
             }}
           ></input>
           <Link to={"/input"}>
-            <button id="start_button" onClick={this.handleAddScript}>
+            <button id="start_button" onClick={this.props.handleAddScript}>
               lets get started
             </button>
           </Link>

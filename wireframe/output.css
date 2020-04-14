@@ -1,0 +1,19 @@
+h3,
+h4,
+form {
+  text-align: center;
+}
+
+.output_box {
+  margin: auto;
+  width: 60%;
+  background-color: #c3bfbf;
+  padding: 20px;
+}
+
+#instructions_box {
+  margin: 25px auto 25px auto;
+  width: 50%;
+  background-color: #c3bfbf;
+  line-height: 2;
+}

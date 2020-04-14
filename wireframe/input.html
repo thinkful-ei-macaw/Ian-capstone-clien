@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="input.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <header>
+      <h1>bash generator</h1>
+    </header>
+    <form action="">
+      <ul id="input_list">
+        <li>
+          <input
+            type="text"
+            name="for loop"
+            id=""
+            placeholder="git clone url"
+          />
+        </li>
+        <li>
+          <select>
+            <option value="if statement">if</option>
+            <option value="for loop">for loop</option>
+            <option value="other">when</option>
+            <option value="other">while</option>
+            <option value="other">etc</option>
+          </select>
+          <ul>
+            <li>
+              <input type="text" placeholder="arg1 exists" />
+            </li>
+            <li>
+              <p>then</p>
+            </li>
+            <li class="indt_1">
+              <input
+                type="text"
+                name="if statement"
+                id=""
+                placeholder="cd usr"
+              />
+            </li>
+          </ul>
+        </li>
+        <li>
+          <input type="text" name="" id="" placeholder="mkdir hello_world" />
+        </li>
+        <li>
+          <input type="text" name="" id="" placeholder="mv hello world bin" />
+        </li>
+        <li>
+          <input type="text" name="" id="" placeholder="rm hello_world" />
+        </li>
+      </ul>
+    </form>
+    <button>generate script</button>
+    <footer>
+      <p id="footer_content">copyright, contact etc</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="output.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <header>
+      <h1>bash generator</h1>
+    </header>
+    <h3>your script</h3>
+    <div class="output_box">
+      <pre>
+        <code id="output_text">
+      #!/bin/bash
+git clone git@github.com:repositoty/ a rep
+git $1
+if [ -z "$1" ]
+then cd express-boilerplate return 1
+else cd $1
+fi
+
+echo $1 > README.md
+echo -n "Enter description:"
+read desc
+
+echo "You Entered: $desc"
+echo $desc >> README.md
+rm -rf .git && git init
+npm install
+mv example.env .env
+
+        </code>
+      </pre>
+    </div>
+    <form action="">
+      <label for="os">select your operating system</label>
+      <select name="os" id="os_select">
+        <option value="linux">Linux</option>
+        <option value="mac">MacOs</option>
+        <option value="windows">Windows</option>
+      </select>
+    </form>
+    <div id="instructions_box">
+      <h4>custom instructions based on os</h4>
+      <ul>
+        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
+        <li>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</li>
+        <li>Lorem ipsum dolor sit amet consectetur</li>
+        <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</li>
+        <li>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</li>
+      </ul>
+    </div>
+
+    <footer>
+      <p id="footer_content">copyright, contact etc</p>
+    </footer>
+  </body>
+</html>

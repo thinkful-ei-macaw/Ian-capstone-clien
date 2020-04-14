@@ -1,0 +1,36 @@
+body {
+  background-color: grey;
+}
+
+footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  font-size: 12px;
+  height: 20px;
+}
+
+h1,
+footer {
+  text-align: center;
+}
+button {
+  margin: 80px 0 0 0;
+  background-color: #000000;
+  display: inline-block;
+  cursor: pointer;
+  color: #1ff01f;
+  font-family: Arial;
+  font-size: 14px;
+  padding: 14px 24px;
+  text-decoration: none;
+  border-style: none;
+}
+
+button:hover {
+  background-color: #332b33;
+}
+button:active {
+  position: relative;
+  top: 1px;
+}

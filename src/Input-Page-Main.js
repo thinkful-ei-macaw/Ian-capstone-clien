@@ -33,7 +33,7 @@ export default class InputPageMain extends React.Component {
     if (type === "command") {
       return { type: type, command: "" };
     }
-    if (type === "if") {
+    if (type === "If") {
       return { type: type, command: "", condition: "" };
     }
     if (type === "for") {
@@ -58,7 +58,7 @@ export default class InputPageMain extends React.Component {
         // this will probably need to be changed to a select generated from a separate module later this is temporary
       );
     }
-    if (script.type === "if") {
+    if (script.type === "If") {
       return (
         <li>
           <input
@@ -139,7 +139,7 @@ export default class InputPageMain extends React.Component {
             e.preventDefault();
             let activeScripts = this.state.activeScripts;
             activeScripts.push(this.getScriptObject(this.state.selected));
-            this.setState({ activeScripts: activeScripts });
+            this.setState({ activeScripts });
           }}
         >
           <select onChange={this.handleChange}>
@@ -147,7 +147,7 @@ export default class InputPageMain extends React.Component {
               return (
                 <option
                   name={script.script_name}
-                  value={script.name}
+                  value={script.script_name}
                   className="script_select"
                 >
                   {script.script_name}

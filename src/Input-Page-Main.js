@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default class InputPageMain extends React.Component {
   URL = "http://localhost:8000/";
@@ -157,7 +158,9 @@ export default class InputPageMain extends React.Component {
           </select>
           <button type="submit">new line</button>
         </form>
-        <button onClick={this.handlePostScript}></button>
+        <Link to={`/output/${this.props.scriptId}`}>
+          <button onClick={this.handlePostScript}></button>
+        </Link>
       </div>
     );
   }

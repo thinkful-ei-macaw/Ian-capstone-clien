@@ -7,6 +7,7 @@ import { Route, Link, BrowserRouter } from "react-router-dom";
 import Context from "./Context.js";
 import LandingPage from "./landing-page.js";
 import InputPageMain from "./Input-Page-Main.js";
+import OutputPageMain from "./output-page-main.js";
 
 const URL = "http://localhost:8000/";
 
@@ -63,6 +64,7 @@ class App extends React.Component {
             );
           }}
         />
+
         <Route
           path="/input"
           render={(rProps) => {
@@ -73,6 +75,13 @@ class App extends React.Component {
                 scriptId={this.state.newScriptId}
               />
             );
+          }}
+        />
+
+        <Route
+          path="/output/:scriptId"
+          render={(rProps) => {
+            return <OutputPageMain {...rProps} />;
           }}
         />
       </Context.Provider>

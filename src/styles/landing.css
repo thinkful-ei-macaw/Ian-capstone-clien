@@ -2,10 +2,8 @@
   display: flex;
   flex-direction: column;
 }
-* {
-  text-align: center;
-}
 #description_box {
+  text-align: center;
   flex-grow: 1;
 }
 
@@ -34,7 +32,4 @@ picture {
   #start_button {
     margin-top: 200px;
   }
-}
-* {
-  text-align: center;
 }

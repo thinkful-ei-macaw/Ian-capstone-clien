@@ -8,6 +8,7 @@ import Context from "./Context.js";
 import LandingPage from "./landing-page.js";
 import InputPageMain from "./Input-Page-Main.js";
 import OutputPageMain from "./output-page-main.js";
+import "./styles/index.css";
 
 const URL = "http://localhost:8000/";
 

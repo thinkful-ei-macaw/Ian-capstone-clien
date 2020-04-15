@@ -9,6 +9,7 @@ form {
   width: 60%;
   background-color: #c3bfbf;
   padding: 20px;
+  text-align: left !important;
 }
 
 #instructions_box {
@@ -16,4 +17,8 @@ form {
   width: 50%;
   background-color: #c3bfbf;
   line-height: 2;
+}
+
+#output_text {
+  text-align: left !important;
 }

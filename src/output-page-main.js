@@ -1,4 +1,5 @@
 import React from "react";
+import "./styles/output.css";
 
 export default class OutputPageMain extends React.Component {
   state = {
@@ -20,7 +21,7 @@ export default class OutputPageMain extends React.Component {
     return (
       <div>
         <h3>your script</h3>
-        <div class="output_box">
+        <div className="output_box">
           <pre>
             <code id="output_text">{this.state.code}</code>
           </pre>

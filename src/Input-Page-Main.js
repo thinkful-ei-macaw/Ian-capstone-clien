@@ -1,14 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import "./styles/input.css";
 export default class InputPageMain extends React.Component {
   URL = "http://localhost:8000/";
 
   state = {
     scripts: [],
-    activeScripts: [],
-    selected: "command",
+    lines: [],
+    selected: "for",
+    commands: [],
   };
+
   componentDidMount() {
     fetch(`http://localhost:8000/input`)
       .then((res) => {
@@ -17,10 +19,20 @@ export default class InputPageMain extends React.Component {
       .then((data) => {
         this.setState({ scripts: data });
       });
+
+    fetch(`http://localhost:8000/input/commands`)
+      .then((res) => {
+        console.log(res);
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+        this.setState({ commands: data });
+      });
   }
 
-  findById = (id) => {
-    this.state.scripts.find((script) => script.id === id);
+  findByName = (name) => {
+    return this.state.commands.find((command) => command.command_name == name);
   };
 
   handleChange = (e) => {
@@ -32,30 +44,83 @@ export default class InputPageMain extends React.Component {
 
   getScriptObject = (type) => {
     if (type === "command") {
-      return { type: type, command: "" };
+      return { type: type, command: "", description: "", arg1: "" };
     }
     if (type === "If") {
-      return { type: type, command: "", condition: "" };
+      return {
+        type: type,
+        command: "",
+        condition: "",
+        description: "",
+        arg1: "",
+      };
     }
     if (type === "for") {
-      return { type: type, command: "", duration: 0 };
+      return {
+        type: type,
+        command: "",
+        duration: 0,
+        description: "",
+        arg1: "",
+      };
     }
   };
 
+  generateCommandOption = (command) => {
+    return (
+      <option
+        name={command.command_name}
+        value={command.command_name}
+        className="command_select"
+      >
+        {command.command_name}
+      </option>
+    );
+  };
+
+  generateCommandField = (index) => {
+    let lines = this.state.lines;
+    return (
+      <>
+        <select
+          type="text"
+          placeholder="mv bin foo"
+          onChange={(e) => {
+            lines[index].command = e.target.value;
+            lines[index].description = this.findByName(
+              e.target.value
+            ).description;
+            this.setState({ lines });
+          }}
+        >
+          <option value="null" selected>
+            pick your command here
+          </option>
+          {this.state.commands.map((command) => {
+            return this.generateCommandOption(command);
+          })}
+        </select>
+        <p>{this.state.lines[index].description}</p>
+        <input
+          type="text"
+          placeholder="put the required argument for your command here"
+          onChange={(e) => {
+            lines[index].arg1 = e.target.value;
+            {
+              this.setState({ lines });
+            }
+          }}
+        ></input>
+      </>
+    );
+  };
+
   generateScriptInputs = (script, index) => {
-    let activeScripts = this.state.activeScripts;
+    let lines = this.state.lines;
+
     if (script.type === "command") {
       return (
-        <li>
-          <input
-            type="text"
-            placeholder="mv bin foo"
-            onChange={(e) => {
-              activeScripts[index].command = e.target.value;
-              this.setState({ activeScripts: activeScripts });
-            }}
-          ></input>
-        </li>
+        <li>{this.generateCommandField(index)}</li>
         // this will probably need to be changed to a select generated from a separate module later this is temporary
       );
     }
@@ -66,21 +131,13 @@ export default class InputPageMain extends React.Component {
             type="text"
             placeholder="argument goes here"
             onChange={(e) => {
-              activeScripts[index].condition = e.target.value;
-              this.setState({ activeScripts: activeScripts });
-              console.log(this.state.activeScripts);
+              lines[index].condition = e.target.value;
+              this.setState({ lines: lines });
+              console.log(this.state.lines);
             }}
           ></input>
           <p>then</p>
-          <input
-            type="text"
-            placeholder="command to be executed goes here"
-            onChange={(e) => {
-              activeScripts[index].command = e.target.value;
-              this.setState({ activeScripts: activeScripts });
-              console.log(this.state.activeScripts);
-            }}
-          ></input>
+          {this.generateCommandField(index)}
         </li>
         // these will also need to be modules. the argument espescially is going to be very contextual depending on what time allows to implement the command selector will likely be the same module as above
       );
@@ -89,23 +146,16 @@ export default class InputPageMain extends React.Component {
       return (
         <li>
           <p>perform this command</p>
-          <input
-            type="text"
-            placeholder="command here"
-            onChange={(e) => {
-              activeScripts[index].command = e.target.value;
-              this.setState({ activeScripts: activeScripts });
-            }}
-          ></input>
+          {this.generateCommandField(index)}
           <input
             type="number"
             placeholder="duration here"
             onChange={(e) => {
-              activeScripts[index].duration = e.target.value;
-              this.setState({ activeScripts: activeScripts });
+              lines[index].duration = e.target.value;
+              this.setState({ lines: lines });
             }}
           ></input>
-          <p>times</p>
+          <p>this many times</p>
         </li>
         //the command here should be fine as the same module as the others and the number entry is ok as a simple number field unless we get to the point of working with arrays which is a far off stretch. there should be explanations on how to use the count of the loop in the command.
       );
@@ -113,13 +163,13 @@ export default class InputPageMain extends React.Component {
   };
 
   handlePostScript = () => {
-    let activeScripts = this.state.activeScripts.map((script) => {
+    let lines = this.state.lines.map((script) => {
       return { ...script, script_relation: this.props.scriptId };
     });
-    console.log(this.state.activeScripts);
+    console.log(this.state.lines);
     fetch(`http://localhost:8000/input`, {
       method: "POST",
-      body: JSON.stringify({ activeScripts }),
+      body: JSON.stringify({ lines }),
       headers: {
         "content-type": "application/json",
       },
@@ -130,7 +180,7 @@ export default class InputPageMain extends React.Component {
     return (
       <div>
         <ul id="input_list">
-          {this.state.activeScripts.map((script, index) =>
+          {this.state.lines.map((script, index) =>
             this.generateScriptInputs(script, index)
           )}
         </ul>
@@ -138,9 +188,9 @@ export default class InputPageMain extends React.Component {
           action=""
           onSubmit={(e) => {
             e.preventDefault();
-            let activeScripts = this.state.activeScripts;
-            activeScripts.push(this.getScriptObject(this.state.selected));
-            this.setState({ activeScripts });
+            let lines = this.state.lines;
+            lines.push(this.getScriptObject(this.state.selected));
+            this.setState({ lines });
           }}
         >
           <select onChange={this.handleChange}>

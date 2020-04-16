@@ -22,3 +22,16 @@ form {
 #output_text {
   text-align: left !important;
 }
+
+.new_line_button {
+  margin: 25px auto 0 auto;
+}
+
+.script_type_select {
+  margin: 60px 0 0 0;
+}
+
+#make_script_button {
+  margin: 80px auto 0 auto;
+  display: block;
+}

@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./styles/landing.css";
 
-const URL = "http://localhost:8000/";
+const URL = "https://ancient-plateau-66272.herokuapp.com/";
 
 export default class LandingPage extends React.Component {
   state = {
@@ -45,11 +45,15 @@ export default class LandingPage extends React.Component {
               this.props.updateScriptName(e.target.value);
             }}
           ></input>
-          <Link to={"/input"}>
-            <button id="start_button" onClick={this.props.handleAddScript}>
-              lets get started
-            </button>
-          </Link>
+          <button
+            id="start_button"
+            onClick={(e) => {
+              e.preventDefault();
+              this.props.handleAddScript(this.props.history);
+            }}
+          >
+            lets get started
+          </button>
         </form>
       </div>
     );

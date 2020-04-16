@@ -4,7 +4,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./styles/input.css";
 export default class InputPageMain extends React.Component {
-  URL = "http://localhost:8000/";
+  URL = "https://ancient-plateau-66272.herokuapp.com";
 
   state = {
     scripts: [],
@@ -14,7 +14,7 @@ export default class InputPageMain extends React.Component {
   };
 
   componentDidMount() {
-    fetch(`http://localhost:8000/input`)
+    fetch(`${this.URL}/input`)
       .then((res) => {
         return res.json();
       })
@@ -23,15 +23,23 @@ export default class InputPageMain extends React.Component {
       });
     //this call is grabbing for if and command objects from the api. better name than scripts would be good
 
-    fetch(`http://localhost:8000/input/commands`)
+    fetch(`${this.URL}/input/commands`)
       .then((res) => {
         return res.json();
       })
       .then((data) => {
         this.setState({ commands: data });
       });
+    // this call is grabbing the actual bash objects and their properties from the server
+
+    fetch(`${this.URL}/input/${this.props.match.params.scriptId}`)
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        this.setState({ lines: data });
+      });
   }
-  // this call is grabbing the actual bash objects and their properties from the server
 
   findByName = (name) => {
     return this.state.commands.find((command) => command.command_name == name);
@@ -128,13 +136,17 @@ export default class InputPageMain extends React.Component {
 
     if (script.type === "command") {
       return (
-        <li>{this.generateCommandField(index)}</li>
+        <li className="line_list_item">
+          <h5>{`line ${index + 1}`}</h5>
+          {this.generateCommandField(index)}
+        </li>
         // this will probably need to be changed to a select generated from a separate module later this is temporary
       );
     }
     if (script.type === "If") {
       return (
-        <li>
+        <li className="line_list_item">
+          <h5>{`line ${index + 1}`}</h5>
           <input
             type="text"
             placeholder="argument goes here"
@@ -151,7 +163,8 @@ export default class InputPageMain extends React.Component {
     }
     if (script.type === "for") {
       return (
-        <li>
+        <li className="line_list_item">
+          <h5>{`line ${index + 1}`}</h5>
           <p>perform this command</p>
           {this.generateCommandField(index)}
           <input
@@ -172,16 +185,19 @@ export default class InputPageMain extends React.Component {
 
   handlePostScript = () => {
     let lines = this.state.lines.map((script) => {
-      return { ...script, script_relation: this.props.scriptId };
+      return { ...script, script_relation: this.props.match.params.scriptId };
     });
-    fetch(`http://localhost:8000/input`, {
+    fetch(`${this.URL}/input`, {
       method: "POST",
       body: JSON.stringify({ lines }),
       headers: {
         "content-type": "application/json",
       },
+    }).then(() => {
+      this.props.history.push(`/output/${this.props.match.params.scriptId}`);
     });
   };
+
   //this does the actual post. lots of complex stuff on the backend but this is just throwing the whole lines object up to the server nothing fancy
 
   render() {
@@ -201,7 +217,7 @@ export default class InputPageMain extends React.Component {
             this.setState({ lines });
           }}
         >
-          <select onChange={this.handleChange}>
+          <select className="script_type_select" onChange={this.handleChange}>
             {this.state.scripts.map((script) => {
               return (
                 <option
@@ -209,16 +225,21 @@ export default class InputPageMain extends React.Component {
                   value={script.script_name}
                   className="script_select"
                 >
-                  {script.script_name}
+                  {`${script.script_name}: ${script.description}`}
                 </option>
               );
             })}
           </select>
-          <button type="submit">new line</button>
+          <label htmlFor=".script_type_select">
+            pick the format for your new line
+          </label>
+          <button className="new_line_button" type="submit">
+            new line
+          </button>
         </form>
-        <Link to={`/output/${this.props.scriptId}`}>
-          <button onClick={this.handlePostScript}>make my script</button>
-        </Link>
+        <button id="make_script_button" onClick={this.handlePostScript}>
+          make my script
+        </button>
       </div>
     );
   }

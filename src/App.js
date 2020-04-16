@@ -10,7 +10,7 @@ import InputPageMain from "./Input-Page-Main.js";
 import OutputPageMain from "./output-page-main.js";
 import "./styles/index.css";
 
-const URL = "http://localhost:8000/";
+const URL = "https://ancient-plateau-66272.herokuapp.com/";
 
 class App extends React.Component {
   state = {
@@ -18,7 +18,7 @@ class App extends React.Component {
     newScriptId: 1,
   };
 
-  handleAddScript = () => {
+  handleAddScript = (history) => {
     fetch(`${URL}`, {
       method: "POST",
       body: JSON.stringify({ title: this.state.newScriptName }),
@@ -28,6 +28,9 @@ class App extends React.Component {
     })
       .then((res) => res.json())
       .then((newScript) => this.setState({ newScriptId: newScript.id }))
+      .then(() => {
+        history.push(`/input/${this.state.newScriptId}`);
+      })
       .catch();
   };
 
@@ -45,9 +48,11 @@ class App extends React.Component {
         <Route
           exact
           path="/"
-          render={() => {
+          render={(rProps) => {
             return (
               <LandingPage
+                {...rProps}
+                scriptId={this.state.newScriptId}
                 updateScriptName={this.updateScriptName}
                 handleAddScript={this.handleAddScript}
               />
@@ -56,12 +61,12 @@ class App extends React.Component {
         />
 
         <Route
-          path="/input"
+          path="/input/:scriptId"
           render={(rProps) => {
             return (
               <InputPageMain
                 {...rProps}
-                scriptTitle={this.state.newScriptTitle}
+                scriptTitle={this.state.newScriptName}
                 scriptId={this.state.newScriptId}
                 key={Date.now()}
               />
@@ -72,7 +77,13 @@ class App extends React.Component {
         <Route
           path="/output/:scriptId"
           render={(rProps) => {
-            return <OutputPageMain {...rProps} key={Date.now()} />;
+            return (
+              <OutputPageMain
+                {...rProps}
+                key={Date.now()}
+                scriptTitle={this.state.newScriptName}
+              />
+            );
           }}
         />
       </Context.Provider>
@@ -83,7 +94,9 @@ class App extends React.Component {
     return (
       <ErrorScreen>
         <BrowserRouter>
-          <header className="header">{header()}</header>
+          <header className="header" key={Date.now()}>
+            {header()}
+          </header>
           <main>
             {this.renderMainRoutes()}
             <div className="App"></div>

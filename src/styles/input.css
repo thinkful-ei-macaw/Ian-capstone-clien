@@ -27,3 +27,9 @@ button {
   display: block;
   margin: 40px auto;
 }
+
+.line_list_item {
+  margin: 20px 0 20px 0;
+  border: 1px solid black;
+  padding: 5px;
+}

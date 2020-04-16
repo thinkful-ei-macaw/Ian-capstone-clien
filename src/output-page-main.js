@@ -4,6 +4,7 @@ import "./styles/output.css";
 export default class OutputPageMain extends React.Component {
   state = {
     code: "",
+    mounted: 0,
   };
 
   componentDidMount() {
@@ -18,6 +19,9 @@ export default class OutputPageMain extends React.Component {
   }
 
   render() {
+    const key = this.props.key;
+    console.log(key);
+    // this is making the page remount by checking the time. maybe find another solution
     return (
       <div>
         <h3>your script</h3>

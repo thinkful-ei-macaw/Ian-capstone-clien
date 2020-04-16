@@ -1,3 +1,5 @@
+// REFACTOR ME !!!!!
+
 import React from "react";
 import { Link } from "react-router-dom";
 import "./styles/input.css";
@@ -19,21 +21,22 @@ export default class InputPageMain extends React.Component {
       .then((data) => {
         this.setState({ scripts: data });
       });
+    //this call is grabbing for if and command objects from the api. better name than scripts would be good
 
     fetch(`http://localhost:8000/input/commands`)
       .then((res) => {
-        console.log(res);
         return res.json();
       })
       .then((data) => {
-        console.log(data);
         this.setState({ commands: data });
       });
   }
+  // this call is grabbing the actual bash objects and their properties from the server
 
   findByName = (name) => {
     return this.state.commands.find((command) => command.command_name == name);
   };
+  //this is here to grab the description of a command based onits name. could just return the description but figured might as well just do the object in case it needs reusing
 
   handleChange = (e) => {
     let { value } = e.target;
@@ -41,6 +44,7 @@ export default class InputPageMain extends React.Component {
       selected: value,
     });
   };
+  //this is the on change function for picking between if, for and command.
 
   getScriptObject = (type) => {
     if (type === "command") {
@@ -65,6 +69,7 @@ export default class InputPageMain extends React.Component {
       };
     }
   };
+  //this is to add a new line to the lines object in state and generate which format for that object to use
 
   generateCommandOption = (command) => {
     return (
@@ -77,6 +82,8 @@ export default class InputPageMain extends React.Component {
       </option>
     );
   };
+
+  //this just generates the actual option that goes in the select field in generate command field
 
   generateCommandField = (index) => {
     let lines = this.state.lines;
@@ -114,6 +121,7 @@ export default class InputPageMain extends React.Component {
       </>
     );
   };
+  //this monster generates the select and input field and the onchange functions for each line in the editor. defintely needs to be chopped up
 
   generateScriptInputs = (script, index) => {
     let lines = this.state.lines;
@@ -133,7 +141,6 @@ export default class InputPageMain extends React.Component {
             onChange={(e) => {
               lines[index].condition = e.target.value;
               this.setState({ lines: lines });
-              console.log(this.state.lines);
             }}
           ></input>
           <p>then</p>
@@ -161,20 +168,21 @@ export default class InputPageMain extends React.Component {
       );
     }
   };
+  //this is the command the generates the full inputs for each line of code in the editor depending on which of the types it gets passed. this is the one that actually gets called by the render
 
   handlePostScript = () => {
     let lines = this.state.lines.map((script) => {
       return { ...script, script_relation: this.props.scriptId };
     });
-    console.log(this.state.lines);
     fetch(`http://localhost:8000/input`, {
       method: "POST",
       body: JSON.stringify({ lines }),
       headers: {
         "content-type": "application/json",
       },
-    }).then((res) => console.log(res.json()));
+    });
   };
+  //this does the actual post. lots of complex stuff on the backend but this is just throwing the whole lines object up to the server nothing fancy
 
   render() {
     return (
@@ -209,7 +217,7 @@ export default class InputPageMain extends React.Component {
           <button type="submit">new line</button>
         </form>
         <Link to={`/output/${this.props.scriptId}`}>
-          <button onClick={this.handlePostScript}></button>
+          <button onClick={this.handlePostScript}>make my script</button>
         </Link>
       </div>
     );

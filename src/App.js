@@ -33,17 +33,6 @@ class App extends React.Component {
 
   updateScriptName = (value) => {
     this.setState({ newScriptName: value });
-    console.log(this.state.newScriptName);
-  };
-
-  handleDisplayScript = () => {
-    fetch(`${URL}hello`)
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        console.log(JSON.stringify(data));
-      });
   };
 
   renderMainRoutes() {
@@ -74,6 +63,7 @@ class App extends React.Component {
                 {...rProps}
                 scriptTitle={this.state.newScriptTitle}
                 scriptId={this.state.newScriptId}
+                key={Date.now()}
               />
             );
           }}
@@ -82,7 +72,7 @@ class App extends React.Component {
         <Route
           path="/output/:scriptId"
           render={(rProps) => {
-            return <OutputPageMain {...rProps} />;
+            return <OutputPageMain {...rProps} key={Date.now()} />;
           }}
         />
       </Context.Provider>
@@ -96,9 +86,7 @@ class App extends React.Component {
           <header className="header">{header()}</header>
           <main>
             {this.renderMainRoutes()}
-            <div className="App">
-              <button onClick={this.handleDisplayScript}> test </button>
-            </div>
+            <div className="App"></div>
           </main>
           <footer>{footer()}</footer>
         </BrowserRouter>

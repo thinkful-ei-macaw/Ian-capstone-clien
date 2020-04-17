@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import ErrorScreen from "./ErrorScreen";
-import header from "./header.js";
+import Header from "./header.js";
 import footer from "./footer.js";
 import { Route, Link, BrowserRouter } from "react-router-dom";
 import Context from "./Context.js";
@@ -9,6 +9,10 @@ import LandingPage from "./landing-page.js";
 import InputPageMain from "./Input-Page-Main.js";
 import OutputPageMain from "./output-page-main.js";
 import "./styles/index.css";
+import PrivateRoute from "./Utils/PrivateRoute";
+import PublicOnlyRoute from "./Utils/PublicOnlyRoute";
+import LoginPage from "./routes/LoginPage";
+import RegistrationPage from "./routes/RegistrationPage";
 
 const URL = "https://ancient-plateau-66272.herokuapp.com/";
 
@@ -94,10 +98,14 @@ class App extends React.Component {
     return (
       <ErrorScreen>
         <BrowserRouter>
-          <header className="header" key={Date.now()}>
-            {header()}
+          <header>
+            <Header></Header>
           </header>
           <main>
+            <PublicOnlyRoute path={"/login"} component={LoginPage} />
+
+            <PublicOnlyRoute path={"/register"} component={RegistrationPage} />
+            {/* <PrivateRoute path={"/user/:userId"} component={ArticlePage} /> */}
             {this.renderMainRoutes()}
             <div className="App"></div>
           </main>

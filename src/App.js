@@ -13,19 +13,25 @@ import PrivateRoute from "./Utils/PrivateRoute";
 import PublicOnlyRoute from "./Utils/PublicOnlyRoute";
 import LoginPage from "./routes/LoginPage";
 import RegistrationPage from "./routes/RegistrationPage";
+import UserPage from "./UserPage";
 
-const URL = "https://ancient-plateau-66272.herokuapp.com/";
+const URL = "https://ancient-plateau-66272.herokuapp.com";
 
 class App extends React.Component {
   state = {
     newScriptName: "placeholder",
     newScriptId: 1,
+    author_id: null,
   };
 
   handleAddScript = (history) => {
     fetch(`${URL}`, {
       method: "POST",
-      body: JSON.stringify({ title: this.state.newScriptName }),
+      body: JSON.stringify({
+        title: this.state.newScriptName,
+        author_id: window.localStorage.getItem("userId"),
+      }),
+
       headers: {
         "content-type": "application/json",
       },
@@ -40,6 +46,10 @@ class App extends React.Component {
 
   updateScriptName = (value) => {
     this.setState({ newScriptName: value });
+  };
+  setAuthorId = (author_id) => {
+    console.log(author_id);
+    this.setState({ author_id: author_id });
   };
 
   renderMainRoutes() {
@@ -90,11 +100,18 @@ class App extends React.Component {
             );
           }}
         />
+        <Route
+          path="user/:userId"
+          render={() => {
+            return <UserPage />;
+          }}
+        />
       </Context.Provider>
     );
   }
 
   render() {
+    this.userId = Number(window.localStorage.userId);
     return (
       <ErrorScreen>
         <BrowserRouter>
@@ -102,10 +119,14 @@ class App extends React.Component {
             <Header></Header>
           </header>
           <main>
-            <PublicOnlyRoute path={"/login"} component={LoginPage} />
+            <PublicOnlyRoute
+              path={"/login"}
+              component={LoginPage}
+              setAuthorId={this.setAuthorId}
+            />
 
             <PublicOnlyRoute path={"/register"} component={RegistrationPage} />
-            {/* <PrivateRoute path={"/user/:userId"} component={ArticlePage} /> */}
+            <PrivateRoute path={"/user/:userId"} component={UserPage} />
             {this.renderMainRoutes()}
             <div className="App"></div>
           </main>

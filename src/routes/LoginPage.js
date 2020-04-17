@@ -20,7 +20,10 @@ export default class LoginPage extends Component {
     return (
       <Section className="LoginPage">
         <h2>Login</h2>
-        <LoginForm onLoginSuccess={this.handleLoginSuccess} />
+        <LoginForm
+          onLoginSuccess={this.handleLoginSuccess}
+          setAuthorId={this.props.setAuthorId}
+        />
       </Section>
     );
   }

@@ -1,19 +1,26 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 import { Hyph } from "./Utils/Utils";
 import TokenService from "./services/token-service";
 
-export default class Header extends Component {
-  handleLogoutClick = () => {
+class Header extends Component {
+  state = { localStorageSet: false };
+  handleLogoutClick = (e) => {
+    e.preventDefault();
     TokenService.clearAuthToken();
+    window.localStorage.removeItem("userId");
+    this.props.history.push("/");
   };
 
   renderLogoutLink() {
     return (
       <div className="Header__logged-in">
-        <Link onClick={this.handleLogoutClick} to="/">
+        <a onClick={(e) => this.handleLogoutClick(e)} to="/" href="#">
           Logout
+        </a>
+        <Link to={`/user/${Number(window.localStorage.userId)}`}>
+          My Script
         </Link>
       </div>
     );
@@ -42,3 +49,4 @@ export default class Header extends Component {
     );
   }
 }
+export default withRouter(Header);

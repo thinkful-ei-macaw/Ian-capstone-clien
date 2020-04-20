@@ -1,5 +1,5 @@
 import React from "react";
-import "./styles/output.css";
+import "./styles/index.css";
 
 export default class OutputPageMain extends React.Component {
   state = {
@@ -51,17 +51,22 @@ export default class OutputPageMain extends React.Component {
                 like regular bash right now
               </p>
               . If you're on Linux(good job) just move straight to the next code
-              block. if your on mac just run <code>mkdir bin</code> in your home
-              directory first.
+              block. if your on mac just run
+              <div className="code_block">
+                <code>mkdir bin</code>
+              </div>
+              in your home directory first.
             </li>
             <li>
-              <code>
-                cd
-                <br /> cd bin
-                <br /> touch {title}
-                <br /> vi {title}
-                <br />
-              </code>
+              <div className="code_block">
+                <code>
+                  cd
+                  <br /> cd bin
+                  <br /> touch {title}
+                  <br /> vi {title}
+                  <br />
+                </code>
+              </div>
             </li>
             <li>
               this will open vi a basic lil text editor. copy and paste your
@@ -70,9 +75,11 @@ export default class OutputPageMain extends React.Component {
             <li>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</li>
             <li>and now the following code block to enable your script</li>
             <li>
-              <code>
-                chmod 755 {title} <br /> export PATH=$PATH:$HOME/bin
-              </code>
+              <div className="code_block">
+                <code>
+                  chmod 755 {title} <br /> export PATH=$PATH:$HOME/bin
+                </code>
+              </div>
             </li>
             <li>
               and now typing the name of your script will run it everytime you

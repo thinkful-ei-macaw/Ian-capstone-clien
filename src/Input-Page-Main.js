@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Link } from "react-router-dom";
-import "./styles/input.css";
+import "./styles/index.css";
 export default class InputPageMain extends React.Component {
   URL = "https://ancient-plateau-66272.herokuapp.com";
 

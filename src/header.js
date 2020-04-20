@@ -37,14 +37,14 @@ class Header extends Component {
   render() {
     return (
       <nav className="Header">
+        {TokenService.hasAuthToken()
+          ? this.renderLogoutLink()
+          : this.renderLoginLink()}
         <h1>
           <Link to="/">
             <h1>Bashful</h1>
           </Link>
         </h1>
-        {TokenService.hasAuthToken()
-          ? this.renderLogoutLink()
-          : this.renderLoginLink()}
       </nav>
     );
   }

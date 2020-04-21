@@ -42,7 +42,7 @@ class Header extends Component {
           : this.renderLoginLink()}
         <h1>
           <Link to="/">
-            <h1>Bashful</h1>
+            <h1>Bashful:~$</h1>
           </Link>
         </h1>
       </nav>

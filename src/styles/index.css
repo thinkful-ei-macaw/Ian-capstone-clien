@@ -1,5 +1,6 @@
 body {
-  background-color: #edeae5; }
+  background-color: #edeae5;
+  font-family: "IBM Plex Mono", monospace; }
 
 * {
   box-sizing: border-box; }
@@ -20,7 +21,9 @@ footer {
   color: #026670; }
 
 h1 {
-  font-size: 70px; }
+  color: #646c7d;
+  font-size: 70px;
+  font-family: "IBM Plex Mono", monospace; }
 
 button {
   margin: 80px 0 0 0;
@@ -74,6 +77,7 @@ button {
 
 /* landing */
 .flex_container {
+  margin: 40px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -84,6 +88,18 @@ button {
   text-align: center;
   margin: auto;
   width: 300px; }
+
+#line_number,
+#make_script_button {
+  background-color: #646c7d;
+  border-color: #abc8ef;
+  color: #abc8ef;
+  text-align: center; }
+
+#line_number {
+  max-width: 1500px;
+  font-size: 20px;
+  font-weight: bold; }
 
 #description_body {
   line-height: 2;
@@ -103,6 +119,15 @@ picture {
 
   #start_button {
     margin-top: 200px; } }
+@media only screen and (min-width: 1200px) {
+  #instructions_box,
+  .output_box,
+  #os_select {
+    width: 50% !important;
+    background-color: red; }
+
+  #os_select {
+    display: block; } }
 #description_box > h4 {
   font-size: 24px; }
 
@@ -122,7 +147,6 @@ form {
 
 .output_box {
   margin: auto;
-  width: 60%;
   background-color: #c3bfbf;
   padding: 20px;
   text-align: left !important;
@@ -137,7 +161,6 @@ form {
 
 #instructions_box {
   margin: 25px auto 25px auto;
-  width: 50%;
   background-color: #026670;
   line-height: 2;
   color: #edeae5; }
@@ -151,9 +174,6 @@ h3 {
 .new_line_button {
   margin: 25px auto 0 auto; }
 
-.script_type_select {
-  margin: 60px 0 0 0; }
-
 #make_script_button {
   margin: 80px auto 0 auto;
   display: block; }
@@ -166,7 +186,7 @@ h3 {
 
 .script_type_select,
 #os_select {
-  margin: 60px 0 0 0;
+  margin: 0 auto;
   color: #edeae5;
   background: #026670;
   padding: 10px;
@@ -174,6 +194,7 @@ h3 {
   width: auto; }
 
 .line_list_item > * {
+  height: auto;
   width: 100%;
   margin: 20px auto auto auto;
   display: block;
@@ -181,7 +202,7 @@ h3 {
   background-color: #026670;
   color: #9fedd7;
   border: 1px solid #9fedd7;
-  height: 35px; }
+  min-height: 45px; }
 
 ::placeholder {
   color: #9fedd7; }
@@ -194,5 +215,20 @@ h3 {
 .Header__logged-in > * {
   margin: 10px;
   color: #026670; }
+
+.Input {
+  margin: 20px auto auto auto;
+  display: block;
+  padding: 5px;
+  background-color: #e8f0fe;
+  color: #9fedd7;
+  border: 1px solid #9fedd7;
+  height: 35px; }
+
+.path_instructions {
+  font-size: 18px;
+  width: 400px;
+  text-align: center;
+  margin: 40px auto; }
 
 /*# sourceMappingURL=index.css.map */

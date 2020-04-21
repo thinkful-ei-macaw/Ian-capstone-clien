@@ -137,7 +137,7 @@ export default class InputPageMain extends React.Component {
     if (script.type === "command") {
       return (
         <li className="line_list_item">
-          <h5>{`line ${index + 1}`}</h5>
+          <h5 id="line_number">{`line ${index + 1}`}</h5>
           {this.generateCommandField(index)}
         </li>
         // this will probably need to be changed to a select generated from a separate module later this is temporary
@@ -146,7 +146,7 @@ export default class InputPageMain extends React.Component {
     if (script.type === "If") {
       return (
         <li className="line_list_item">
-          <h5>{`line ${index + 1}`}</h5>
+          <h5 id="line_number">{`line ${index + 1}`}</h5>
           <input
             type="text"
             placeholder="argument goes here"
@@ -164,12 +164,12 @@ export default class InputPageMain extends React.Component {
     if (script.type === "for") {
       return (
         <li className="line_list_item">
-          <h5>{`line ${index + 1}`}</h5>
+          <h5 id="line_number">{`line ${index + 1}`}</h5>
           <p>perform this command</p>
           {this.generateCommandField(index)}
           <input
             type="number"
-            placeholder="duration here"
+            placeholder="number of repeats here"
             onChange={(e) => {
               lines[index].duration = e.target.value;
               this.setState({ lines: lines });
@@ -231,7 +231,8 @@ export default class InputPageMain extends React.Component {
             })}
           </select>
           <label htmlFor=".script_type_select">
-            pick the format for your new line
+            pick the format for your new line here. Each format allows you to
+            acomplish different things, and requires different arguments.
           </label>
           <button className="new_line_button" type="submit">
             new line
@@ -240,6 +241,22 @@ export default class InputPageMain extends React.Component {
         <button id="make_script_button" onClick={this.handlePostScript}>
           make my script
         </button>
+        <p className="path_instructions">
+          A note about file paths. File paths are how your computer "thinks"
+          about the files it stores. File paths look like this
+          <b style={{ color: "red" }}>./</b>
+          <b style={{ color: "blue" }}>example</b>
+          <b style={{ color: "green" }}>/bin</b>
+          <b style={{ color: "grey" }}>/foo</b>. the{" "}
+          <b style={{ color: "red" }}>./</b> is the folder that your in. usually
+          your main folder then the path is saying "I'm talking about the file
+          called <b style={{ color: "grey" }}>foo</b> inside the folder called
+          <b style={{ color: "green" }}> bin </b>
+          which is itself inside the folder called{" "}
+          <b style={{ color: "blue" }}>example</b>. If you want to get the file
+          path easily just right click on the folder or file and select "copy
+          path", then paste that into the right place.
+        </p>
       </div>
     );
   }

@@ -15,4 +15,4 @@ User has acess to a selection of bash functionality to introiduce them to concep
 <image src="./public/bashful_screenshots/bashful_output_page.png"> Concatenated Script will be output here. instructions for how to save and enable scripts for mac and Linux are below. Windows instructions not currently implemented due to lack of native bash.
 <br/>
 
-made with React, express, Postgresql,javascript.
+made with React, express, Postgresql,javascript, Node, Sass, Jquery, bcryptjs, date-fns and Jsonwebtoken.

@@ -21,7 +21,6 @@ footer {
   color: #026670; }
 
 h1 {
-  color: #646c7d;
   font-size: 70px;
   font-family: "IBM Plex Mono", monospace; }
 
@@ -163,9 +162,8 @@ form {
 
 #instructions_box {
   margin: 25px auto 25px auto;
-  background-color: #026670;
   line-height: 2;
-  color: #edeae5; }
+  color: #646c7d; }
 
 #output_text {
   text-align: left !important; }
@@ -201,13 +199,22 @@ h3 {
   margin: 20px auto auto auto;
   display: block;
   padding: 5px;
-  background-color: #026670;
-  color: #9fedd7;
-  border: 1px solid #9fedd7;
   min-height: 45px; }
 
+.command_select {
+  background-color: #026670;
+  color: #9fedd7;
+  border: 1px solid #9fedd7; }
+
+.command_description {
+  font-size: 13px; }
+
+.argument {
+  background-color: #bdbebf;
+  border: none; }
+
 ::placeholder {
-  color: grey; }
+  color: #2c2c2c; }
 
 #make_script_button {
   margin: 80px auto 0 auto;
@@ -223,8 +230,8 @@ h3 {
   display: block;
   padding: 5px;
   background-color: #e8f0fe;
-  color: #9fedd7;
-  border: 1px solid #9fedd7;
+  color: #646c7d;
+  border: 1px solid #9fdded;
   height: 35px; }
 
 .path_instructions {

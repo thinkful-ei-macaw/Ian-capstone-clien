@@ -33,7 +33,6 @@ footer {
 }
 
 h1 {
-  color: $slate-grey;
   font-size: 70px;
   font-family: "IBM Plex Mono", monospace;
 }
@@ -205,10 +204,8 @@ form {
 
 #instructions_box {
   margin: 25px auto 25px auto;
-
-  background-color: $dark-blue;
   line-height: 2;
-  color: $white;
+  color: $slate-grey;
 }
 
 #output_text {
@@ -252,14 +249,24 @@ h3 {
   margin: 20px auto auto auto;
   display: block;
   padding: 5px;
-  background-color: #026670;
-  color: $light-blue;
-  border: 1px solid #9fedd7;
   min-height: 45px;
 }
 
+.command_select {
+  background-color: #026670;
+  color: $light-blue;
+  border: 1px solid #9fedd7;
+}
+.command_description {
+  font-size: 13px;
+}
+.argument {
+  background-color: #bdbebf;
+  border: none;
+}
+
 ::placeholder {
-  color: grey;
+  color: rgb(44, 44, 44);
 }
 
 #make_script_button {
@@ -278,8 +285,8 @@ h3 {
   display: block;
   padding: 5px;
   background-color: rgb(232, 240, 254);
-  color: $light-blue;
-  border: 1px solid #9fedd7;
+  color: $slate-grey;
+  border: 1px solid #9fdded;
   height: 35px;
 }
 

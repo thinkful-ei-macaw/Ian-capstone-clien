@@ -106,15 +106,18 @@ export default class InputPageMain extends React.Component {
             ).description;
             this.setState({ lines });
           }}
+          className="command_select"
         >
-          <option value="null" selected>
+          <option value="" selected disabled hidden>
             pick your command here
           </option>
           {this.state.commands.map((command) => {
             return this.generateCommandOption(command);
           })}
         </select>
-        <p>{this.state.lines[index].description}</p>
+        <p className="command_description">
+          {this.state.lines[index].description}
+        </p>
         <input
           type="text"
           placeholder="put the required argument for your command here"
@@ -122,6 +125,7 @@ export default class InputPageMain extends React.Component {
             lines[index].arg1 = e.target.value;
             this.setState({ lines });
           }}
+          className="argument"
         ></input>
       </>
     );
@@ -144,6 +148,7 @@ export default class InputPageMain extends React.Component {
       return (
         <li className="line_list_item">
           <h5 id="line_number">{`line ${index + 1}`}</h5>
+          <p className="line_instruction">If the file below exists</p>
           <input
             type="text"
             placeholder="argument goes here"
@@ -151,8 +156,9 @@ export default class InputPageMain extends React.Component {
               lines[index].condition = e.target.value;
               this.setState({ lines: lines });
             }}
+            className="argument"
           ></input>
-          <p>then</p>
+          <p className="line_instruction">then</p>
           {this.generateCommandField(index)}
         </li>
         // these will also need to be modules. the argument espescially is going to be very contextual depending on what time allows to implement the command selector will likely be the same module as above
@@ -162,8 +168,9 @@ export default class InputPageMain extends React.Component {
       return (
         <li className="line_list_item">
           <h5 id="line_number">{`line ${index + 1}`}</h5>
-          <p>perform this command</p>
+          <p className="line_instruction">perform this command</p>
           {this.generateCommandField(index)}
+          <p className="line_instruction">this many times</p>
           <input
             type="number"
             placeholder="number of repeats here"
@@ -171,8 +178,8 @@ export default class InputPageMain extends React.Component {
               lines[index].duration = e.target.value;
               this.setState({ lines: lines });
             }}
+            className="argument"
           ></input>
-          <p>this many times</p>
         </li>
         //the command here should be fine as the same module as the others and the number entry is ok as a simple number field unless we get to the point of working with arrays which is a far off stretch. there should be explanations on how to use the count of the loop in the command.
       );

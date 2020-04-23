@@ -3,7 +3,7 @@ import "./App.css";
 import ErrorScreen from "./ErrorScreen";
 import Header from "./header.js";
 import footer from "./footer.js";
-import { Route, Link, BrowserRouter } from "react-router-dom";
+import { Route, BrowserRouter } from "react-router-dom";
 import Context from "./Context.js";
 import LandingPage from "./landing-page.js";
 import InputPageMain from "./Input-Page-Main.js";

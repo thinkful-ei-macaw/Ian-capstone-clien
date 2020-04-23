@@ -1,7 +1,6 @@
 // REFACTOR ME !!!!!
 
 import React from "react";
-import { Link } from "react-router-dom";
 import "./styles/index.css";
 export default class InputPageMain extends React.Component {
   URL = "https://ancient-plateau-66272.herokuapp.com";
@@ -121,9 +120,7 @@ export default class InputPageMain extends React.Component {
           placeholder="put the required argument for your command here"
           onChange={(e) => {
             lines[index].arg1 = e.target.value;
-            {
-              this.setState({ lines });
-            }
+            this.setState({ lines });
           }}
         ></input>
       </>

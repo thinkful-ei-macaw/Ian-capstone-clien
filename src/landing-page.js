@@ -1,8 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import "./styles/index.css";
-
-const URL = "https://ancient-plateau-66272.herokuapp.com/";
 
 export default class LandingPage extends React.Component {
   state = {
@@ -12,7 +9,7 @@ export default class LandingPage extends React.Component {
   render() {
     return (
       <div>
-        <div class="flex_container">
+        <div className="flex_container">
           <p id="description_body" className="landing_text">
             Hello there, welcome to bashful a simple bash script generator. If
             you've never written a bash script before and are interested in
@@ -44,7 +41,7 @@ export default class LandingPage extends React.Component {
             lets get started
           </button>
 
-          <div class="flex_container">
+          <div className="flex_container">
             <img
               src="http://via.placeholder.com/300x300"
               alt=""
@@ -58,7 +55,7 @@ export default class LandingPage extends React.Component {
               find it has a lot to offer.
             </p>
           </div>
-          <div class="flex_container">
+          <div className="flex_container">
             <p id="description_body" className="landing_text">
               So what are Scripts then? In the simplest terms Bash Scripts are a
               list of bash commands you can enter all at once in by typing the
@@ -71,7 +68,7 @@ export default class LandingPage extends React.Component {
               id="example_img"
             />
           </div>
-          <div class="flex_container">
+          <div className="flex_container">
             <img
               src="http://via.placeholder.com/300x300"
               alt=""

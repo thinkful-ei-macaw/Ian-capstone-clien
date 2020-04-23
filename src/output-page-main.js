@@ -25,38 +25,25 @@ export default class OutputPageMain extends React.Component {
     let title = this.props.scriptTitle.replace(/ /g, "_");
     return (
       <div>
-        <h3>your script</h3>
+        <h3>{this.props.scriptTitle}</h3>
         <div className="output_box">
           <pre>
             <code id="output_text">{this.state.code}</code>
           </pre>
         </div>
-        <form action="">
+        {/* <form action="">
           <label for="os">select your operating system</label>
           <select name="os" id="os_select">
             <option value="linux">Linux</option>
             <option value="mac">MacOs</option>
             <option value="windows">Windows</option>
           </select>
-        </form>
+        </form> */}
         <div id="instructions_box">
-          <h4>custom instructions based on os</h4>
+          {/* <h4>custom instructions based on os</h4> */}
           <ul>
             <li>But not yet!</li>
-            <li>
-              Thanks for testing{" "}
-              <p style={{ color: "red" }}>
-                There isnt checking that nothing harmful can be done happening
-                yet. you can fuck up your config files and stuff with this just
-                like regular bash right now
-              </p>
-              . If you're on Linux(good job) just move straight to the next code
-              block. if your on mac just run
-              <div className="code_block">
-                <code>mkdir bin</code>
-              </div>
-              in your home directory first.
-            </li>
+            <li>If you're on Linux(good job) run the following code block</li>
             <li>
               <div className="code_block">
                 <code>
@@ -67,12 +54,21 @@ export default class OutputPageMain extends React.Component {
                   <br />
                 </code>
               </div>
+              Or If Mac Run the following
+              <div className="code_block">
+                <code>
+                  cd
+                  <br /> cd ./user/bin
+                  <br /> touch {title}
+                  <br /> vi {title}
+                  <br />
+                </code>
+              </div>
             </li>
             <li>
-              this will open vi a basic lil text editor. copy and paste your
-              script above then type ":exit" the colon is important
+              this will open vi a basic text editor. copy and paste your script
+              above then type ":exit" the colon is important
             </li>
-            <li>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</li>
             <li>and now the following code block to enable your script</li>
             <li>
               <div className="code_block">
@@ -86,8 +82,14 @@ export default class OutputPageMain extends React.Component {
               type it
             </li>
             <li>
-              if your on Windows then I dont have instructions for you yet. its
-              way more complicated on wisndows, sorry. but thanks for testing
+              if your on Windows follow the instructions at one of these two
+              links then begin from he top of these instruction{" "}
+              <a href="https://ubuntu.com/tutorials/tutorial-install-ubuntu-desktop#1-overview">
+                option 1
+              </a>{" "}
+              <a href="https://www.apple.com/mac/?afid=p238%7CsI0DtcS2r-dc_mtid_1870765e38482_pcrid_427355927472_pgrid_19485452767_&cid=aos-us-kwgo-mac--slid---product-">
+                option 2
+              </a>
             </li>
           </ul>
         </div>

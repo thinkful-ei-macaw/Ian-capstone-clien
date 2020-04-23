@@ -101,13 +101,13 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  align-content: center;
+  align-items: center;
 }
-#description_body,
 #example_img {
+  flex: 1;
   text-align: center;
-  margin: auto;
-  width: 300px;
+  margin: 0 20px;
+  max-width: 300px;
 }
 
 #line_number,
@@ -127,7 +127,7 @@ button {
 #description_body {
   line-height: 2;
   font-size: 16px;
-  max-width: 400px;
+  flex: 2;
 }
 .break {
   flex-basis: 100%;
@@ -156,7 +156,6 @@ picture {
   .output_box,
   #os_select {
     width: 50% !important;
-    background-color: red;
   }
 
   #os_select {
@@ -169,7 +168,10 @@ picture {
 }
 
 .landing_text {
+  text-align: center;
+  margin: auto;
   font-size: 18px;
+  flex: 2;
 }
 
 #title_input {
@@ -257,7 +259,7 @@ h3 {
 }
 
 ::placeholder {
-  color: $light-blue;
+  color: grey;
 }
 
 #make_script_button {

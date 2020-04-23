@@ -33,7 +33,7 @@ footer {
 }
 
 h1 {
-  font-size: 70px;
+  font-size: 50px;
   font-family: "IBM Plex Mono", monospace;
 }
 button {
@@ -148,6 +148,10 @@ picture {
   #start_button {
     margin-top: 200px;
   }
+
+  h1 {
+    font-size: 70px;
+  }
 }
 
 @media only screen and (min-width: 1200px) {
@@ -240,7 +244,6 @@ h3 {
   background: #026670;
   padding: 10px;
   text-align: center;
-  width: auto;
 }
 
 .line_list_item > * {
@@ -276,7 +279,7 @@ h3 {
 
 .Header__not-logged-in > *,
 .Header__logged-in > * {
-  margin: 10px;
+  margin: 10px auto;
   color: $dark-blue;
 }
 
@@ -292,7 +295,7 @@ h3 {
 
 .path_instructions {
   font-size: 18px;
-  width: 400px;
+  max-width: 400px;
   text-align: center;
   margin: 40px auto;
 }

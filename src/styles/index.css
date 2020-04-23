@@ -21,7 +21,7 @@ footer {
   color: #026670; }
 
 h1 {
-  font-size: 70px;
+  font-size: 50px;
   font-family: "IBM Plex Mono", monospace; }
 
 button {
@@ -117,7 +117,10 @@ picture {
     flex-direction: row; }
 
   #start_button {
-    margin-top: 200px; } }
+    margin-top: 200px; }
+
+  h1 {
+    font-size: 70px; } }
 @media only screen and (min-width: 1200px) {
   #instructions_box,
   .output_box,
@@ -190,8 +193,7 @@ h3 {
   color: #edeae5;
   background: #026670;
   padding: 10px;
-  text-align: center;
-  width: auto; }
+  text-align: center; }
 
 .line_list_item > * {
   height: auto;
@@ -222,7 +224,7 @@ h3 {
 
 .Header__not-logged-in > *,
 .Header__logged-in > * {
-  margin: 10px;
+  margin: 10px auto;
   color: #026670; }
 
 .Input {
@@ -236,7 +238,7 @@ h3 {
 
 .path_instructions {
   font-size: 18px;
-  width: 400px;
+  max-width: 400px;
   text-align: center;
   margin: 40px auto; }
 

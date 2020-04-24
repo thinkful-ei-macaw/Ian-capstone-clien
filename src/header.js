@@ -19,6 +19,7 @@ class Header extends Component {
         <a onClick={(e) => this.handleLogoutClick(e)} to="/" href="#">
           Logout
         </a>
+        <Hyph />
         <Link to={`/user/${Number(window.localStorage.userId)}`}>
           My Script
         </Link>

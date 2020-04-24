@@ -13,14 +13,10 @@ export default class LandingPage extends React.Component {
           <p id="description_body" className="landing_text">
             Hello there, welcome to bashful a simple bash script generator. If
             you've never written a bash script before and are interested in
-            starting to learn how this tool can help you get started. Click to
-            get started or just scroll down to find out more
+            starting to learn how this tool can help you get started. Enter a
+            title and click to get started or just scroll down to find out more
           </p>
-          <img
-            src="http://via.placeholder.com/300x300"
-            alt=""
-            id="example_img"
-          />
+          <img src={require("./images/UI_300.png")} alt="" id="example_img" />
         </div>
         <form>
           <input
@@ -43,7 +39,7 @@ export default class LandingPage extends React.Component {
 
           <div className="flex_container">
             <img
-              src="http://via.placeholder.com/300x300"
+              src={require("./images/terminal_300.png")}
               alt=""
               id="example_img"
             />
@@ -63,20 +59,16 @@ export default class LandingPage extends React.Component {
               frequently the same way every time? Thats a job for a bash script.
             </p>
             <img
-              src="http://via.placeholder.com/300x300"
+              src={require("./images/script_300.png")}
               alt=""
               id="example_img"
             />
           </div>
           <div className="flex_container">
-            <img
-              src="http://via.placeholder.com/300x300"
-              alt=""
-              id="example_img"
-            />
+            <img src={require("./images/UI_300.png")} alt="" id="example_img" />
             <p id="description_body" className="landing_text">
-              Well what is this then? Bashful aims to be a way for beginers to
-              write their fits bash scripts with some easy to follow
+              Well what is Bashful then? Bashful aims to be a way for beginers
+              to write their fits bash scripts with some easy to follow
               instructions and readily available explanations. As long as you
               give the commands what they need everything should run perfectly.
               We reccomend as a first project writing a script that will say

@@ -16,5 +16,8 @@ User has acess to a selection of bash functionality to introiduce them to concep
 <br/>
 
 <br/>
+
+<h3>demo credentials</h3>
+username: TEST password: Password1234!
 <h3>Technology</h3>
 Made with React, express, Postgresql,javascript, Node, Sass, Jquery, bcryptjs, date-fns and Jsonwebtoken.
